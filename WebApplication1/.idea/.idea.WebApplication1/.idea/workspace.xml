@@ -10,16 +10,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d1d9152-f419-42b5-a06f-3f2913c8e293" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApplication1/Controllers/TripsController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApplication1/ResponseModels/ClientInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApplication1/ResponseModels/CountryInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApplication1/ResponseModels/TripInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApplication1/ResponseModels/WholeTripInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApplication1/Services/ITripsService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApplication1/Services/TripsService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApplication1/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/WebApplication1.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/WebApplication1.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApplication1/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -35,6 +42,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    ".NET Launch Settings Profile.WebApplication1: http.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
@@ -52,7 +60,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.WebApplication1: IIS Express">
+  <component name="RunManager" selected=".NET Launch Settings Profile.WebApplication1: http">
     <configuration name="WebApplication1: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebApplication1/WebApplication1.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
@@ -108,7 +116,7 @@
       <option name="presentableId" value="Default" />
       <updated>1718359952134</updated>
       <workItem from="1718359953651" duration="46000" />
-      <workItem from="1718360067607" duration="2182000" />
+      <workItem from="1718360067607" duration="7839000" />
     </task>
     <servers />
   </component>
