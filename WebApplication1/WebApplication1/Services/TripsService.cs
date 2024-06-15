@@ -90,8 +90,60 @@ public class TripsService : ITripsService
 
     }
 
-    public Task<string> AddClientToTrip(int tripId, Client client)
+    public async Task<string> AddClientToTrip(int tripId, NewClientDto newClient)
     {
-        throw new NotImplementedException();
+        
+        var clientExists = await _context.Clients.AnyAsync(c => c.Pesel == newClient.Pesel);
+        if (clientExists)
+        {
+            throw new DataException("Client with this PESEL already exists");
+        }
+
+        
+        var clientAtTripExists = await _context.ClientTrips
+            .Include(ct => ct.IdClientNavigation) 
+            .AnyAsync(ct => ct.IdTrip == tripId && ct.IdClientNavigation.Pesel == newClient.Pesel);
+        if (clientAtTripExists)
+        {
+            throw new DataException("Client with this PESEL already has a trip with this id");
+        }
+
+        
+        var trip = await _context.Trips.FindAsync(tripId);
+        if (trip == null)
+        {
+            throw new DataException("Trip with this Id does not exists");
+        }
+
+       
+        if (DateTime.Now > trip.DateFrom)
+        {
+            throw new DataException("The trip has already started");
+        }
+
+        
+        var clientToAdd = new Client()
+        {
+            FirstName = newClient.FirstName,
+            LastName = newClient.LastName,
+            Email = newClient.Email,
+            Telephone = newClient.Telephone,
+            Pesel = newClient.Pesel
+        };
+        _context.Clients.Add(clientToAdd);
+        await _context.SaveChangesAsync();
+
+        
+        var clientTripToAdd = new ClientTrip()
+        {
+            IdClient = clientToAdd.IdClient,
+            IdTrip = tripId,
+            RegisteredAt = DateTime.Now,
+            PaymentDate = newClient.PaymentDate
+        };
+        _context.ClientTrips.Add(clientTripToAdd);
+        await _context.SaveChangesAsync();
+
+        return "Client successfully added to a trip";
     }
 }

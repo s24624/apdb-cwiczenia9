@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication1.DTOs;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers;
@@ -25,6 +26,13 @@ public class TripsController : ControllerBase
     public async Task<IActionResult> DeleteClient(int id)
     {
         var result = await _tripsService.DeleteClient(id);
+        return Ok(result);
+    }
+
+    [HttpPut("{idTrip:int}/clients")]
+    public async Task<IActionResult> AddClientToTrip(int idTrip, [FromBody] NewClientDto newClient)
+    {
+        var result = await _tripsService.AddClientToTrip(idTrip, newClient);
         return Ok(result);
     }
 }

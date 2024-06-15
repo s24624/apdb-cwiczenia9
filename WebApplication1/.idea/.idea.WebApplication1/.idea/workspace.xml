@@ -10,9 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cd52c2f-6edc-4b33-9704-7eebb718015f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WebApplication1/ResponseModels/ClientInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication1/ResponseModels/CountryInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApplication1/ResponseModels/TripInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Controllers/TripsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Controllers/TripsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApplication1/Services/ITripsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Services/ITripsService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApplication1/Services/TripsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApplication1/Services/TripsService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,9 +25,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2hsJcBnkp9qGQTv8gdQNYuQUnyq" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -45,6 +44,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -111,6 +111,7 @@
       <option name="presentableId" value="Default" />
       <updated>1718376928908</updated>
       <workItem from="1718376930061" duration="6683000" />
+      <workItem from="1718450805468" duration="16491000" />
     </task>
     <servers />
   </component>

@@ -7,5 +7,5 @@ public interface ITripsService
 {
     public Task<PagesDto> GetTrips(string? query,int? page,int? pageSize);
     public Task<string> DeleteClient(int id);
-    public Task<string> AddClientToTrip(int tripId, Client client);
+    public Task<string> AddClientToTrip(int tripId, NewClientDto newClient);
 }
