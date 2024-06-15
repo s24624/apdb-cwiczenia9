@@ -1,10 +1,9 @@
 ﻿using System.Data;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using WebApplication1.Context;
 using WebApplication1.DTOs;
 using WebApplication1.Models;
+
 
 namespace WebApplication1;
 
@@ -89,5 +88,10 @@ public class TripsService : ITripsService
         _context.Clients.Remove(isClientExists);
         return "Client removed sucesfully";
 
+    }
+
+    public Task<string> AddClientToTrip(int tripId, Client client)
+    {
+        throw new NotImplementedException();
     }
 }
