@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using WebApplication1.Context;
+using WebApplication1.DTOs;
 using WebApplication1.Models;
 
 namespace WebApplication1;
@@ -14,11 +16,55 @@ public class TripsService : ITripsService
         _context = context;
     }
 
-    public async Task<List<Trip>> GetTrips()
-    {
-       
-        
-        return trips;
 
+    public async Task<PagesDto> GetTrips(string? query, int? page, int? pageSize)
+    {
+        //domyslne ustawienie wartosci na wypadek gdyby parametry nie zostaly przekazane
+        var currentPage = page ?? 1;
+        var currentPageSize = pageSize ?? 10;
+        //inicjalizujemy zapytanie jako Queryable
+        var tripsQuery =  _context.
+            Trips.
+            Include(t=>t.IdCountries).//włączamy pobieranie danych krajów połączonych z wycieczka
+            Include(t=>t.ClientTrips).//włączamy pobieranie danych klientow połączonych z wycieczka
+            ThenInclude(t=>t.IdClientNavigation).AsQueryable();//pobieramy dane klientów 
+
+        //jezeli zostal przekazany parametr query to wtedy filtrijemy wyniki na jego podstawie
+        if (!string.IsNullOrEmpty(query))
+        {
+            tripsQuery =  tripsQuery.Where(t => t.Name.Contains(query));
+        }
+        
+        //pobieramy liczbę wyników 
+        var tripsNumber = await tripsQuery.CountAsync();
+        
+        
+        //stronnicujemy wyniki
+        var tripList = await tripsQuery.
+                                Skip((currentPage - 1) * currentPageSize).//pomijamy elementy na poprzednich stronach
+                                        Take(currentPageSize).//pobieramy okreslona ilosc  elementow dla biezacegj strony
+                                            ToListAsync();
+        var result = new PagesDto()
+        {
+            pageNum = currentPage,
+            pageSize = currentPageSize,
+            allPages = tripsNumber / pageSize ?? 10,
+            trips = tripList.Select(t => new TripDto()
+            {
+                Name = t.Name,
+                Description = t.Description,
+                DateFrom = t.DateFrom,
+                DateTo = t.DateTo,
+                MaxPeople = t.MaxPeople,
+                Countries = t.IdCountries.Select(c => new CountryDto() { Name = c.Name }).ToList(),
+                Clients = t.ClientTrips.Select(c => new ClientDto()
+                {
+                    FirstName = c.IdClientNavigation.FirstName,
+                    LastName = c.IdClientNavigation.LastName
+                }).ToList(),
+
+            }).ToList()
+        };
+        return result;
     }
 }
