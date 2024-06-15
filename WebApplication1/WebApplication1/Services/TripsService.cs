@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using WebApplication1.Context;
 using WebApplication1.Models;
 
@@ -15,7 +16,9 @@ public class TripsService : ITripsService
 
     public async Task<List<Trip>> GetTrips()
     {
-        var trips = await _context.Trips.ToListAsync();
-        return  trips;
+       
+        
+        return trips;
+
     }
 }
