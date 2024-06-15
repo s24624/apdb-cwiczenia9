@@ -20,4 +20,11 @@ public class TripsController : ControllerBase
         var result = await _tripsService.GetTrips(query, page, pageSize);
         return Ok(result);
     }
+
+    [HttpDelete("/{id:int}")]
+    public async Task<IActionResult> DeleteClient(int id)
+    {
+        var result = await _tripsService.DeleteClient(id);
+        return Ok(result);
+    }
 }

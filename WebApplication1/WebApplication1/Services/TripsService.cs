@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using System.Data;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using WebApplication1.Context;
@@ -15,8 +16,6 @@ public class TripsService : ITripsService
     {
         _context = context;
     }
-
-
     public async Task<PagesDto> GetTrips(string? query, int? page, int? pageSize)
     {
         //domyslne ustawienie wartosci na wypadek gdyby parametry nie zostaly przekazane
@@ -66,5 +65,29 @@ public class TripsService : ITripsService
             }).ToList()
         };
         return result;
+    }
+
+    public async Task<string> DeleteClient(int id)
+    {
+        
+
+        var isClientExists = await _context.Clients.FindAsync(id);
+
+        if (isClientExists == null)
+        {
+            throw new DataException("Client with this Id does not exists");
+        }
+        
+        var clientCount = await _context.ClientTrips.
+            Where(c => c.IdClient == id).
+                CountAsync();
+        if (clientCount!=0)
+        {
+            throw new DataException("Client can not be deleted, because he has trips");
+        }
+
+        _context.Clients.Remove(isClientExists);
+        return "Client removed sucesfully";
+
     }
 }
